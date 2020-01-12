@@ -1,23 +1,26 @@
-import React from 'react';
-import MyNav from './Nav';
-import MyHeader from './Header';
-import TopSlider from './Slider';
-import MyLogin from './Login';
-import MyFooter from './Footer';
+import React, {Component} from 'react';
+import {Switch, Route} from 'react-router-dom';
+import './App.css';
+import Topbar from './components/Top';
+import ProductList from "./components/ProductList";
+import Details from "./components/Details";
+import Cart from "./components/Cart";
+import Default from "./components/Default";
 
-function HomePage() {
-  return (
-    <div className="App">
-		<MyNav/>
-		<div id="outer">
-			  <div id="outer-canvas">
-				  <MyHeader/>
-				  <MyLogin/>
-				  <MyFooter/>
-			  </div>
-		</div>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+        <React.Fragment>
+          <Topbar/>
+          <Switch>
+              <Route exact path="/" component={ProductList} />
+              <Route path="/details" component={Details} />
+              <Route path="/cart" component={Cart} />
+              <Route component={Default} />
+          </Switch>
+        </React.Fragment>
+    );
+  }
 }
 
-export default HomePage;
+export default App;
